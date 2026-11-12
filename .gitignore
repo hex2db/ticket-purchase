@@ -107,6 +107,7 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.venv-appium/
 env/
 venv/
 ENV/
@@ -146,6 +147,9 @@ cython_debug/
 # Claude settings
 .claude/*
 
+# WorkBuddy 项目数据（记忆/本地配置，不入库）
+.workbuddy/
+
 # macOS
 .DS_Store
 
@@ -158,8 +162,14 @@ ehthumbs.db
 geckodriver.log
 chromedriver.log
 
+# Node / Appium 本地环境（不全局安装，依赖留在项目内）
+node_modules/
+appium-env/.appium/
+npm-debug.log*
+
 # Application specific
 config.json
+config.local.jsonc
 credentials.json
 *.cookie
 *.pkl

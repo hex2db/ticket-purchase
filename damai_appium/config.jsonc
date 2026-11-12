@@ -1,13 +1,15 @@
 {
   "server_url": "http://127.0.0.1:4723",
-  "keyword": "周深",
+  "keyword": "演出名称关键词",
   "users": [
-    "王胜",
-    "潘鸿运"
+    "观演人姓名1",
+    "观演人姓名2"
   ],
-  "city": "深圳",
-  "date": "12.06",
-  "price": "内场1199元",
+  "city": "城市",
+  "date": "12.11",
+  "price": "票价文本",
   "price_index": 5,
-  "if_commit_order": true
+  "if_commit_order": false,
+  "device_name": "你的设备序列号",
+  "platform_version": "15"
 }
