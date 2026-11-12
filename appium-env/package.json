@@ -1,0 +1,13 @@
+{
+  "name": "ticket-purchase-appium-env",
+  "version": "1.0.0",
+  "private": true,
+  "description": "项目本地 Appium 运行环境（不全局安装，不污染系统）",
+  "scripts": {
+    "driver:install": "appium driver install uiautomator2",
+    "driver:list": "appium driver list --installed"
+  },
+  "dependencies": {
+    "appium": "^3.0.0"
+  }
+}

@@ -27,18 +27,26 @@ class DamaiBot:
 
     def _setup_driver(self):
         """初始化驱动配置"""
+        device_name = self.config.device_name or "emulator-5554"
+        platform_version = self.config.platform_version or "16"
         capabilities = {
             "platformName": "Android",  # 操作系统
-            "platformVersion": "16",  # 系统版本
-            "deviceName": "emulator-5554",  # 设备名称
+            "platformVersion": platform_version,  # 系统版本
+            "deviceName": device_name,  # 设备名称（真机填 adb devices 的序列号）
+            "udid": device_name,  # 多设备时用来指定唯一设备
             "appPackage": "cn.damai",  # app 包名
             "appActivity": ".launcher.splash.SplashMainActivity",  # app 启动 Activity
-            "unicodeKeyboard": True,  # 支持 Unicode 输入
-            "resetKeyboard": True,  # 隐藏键盘
+            # 注意：不要开 unicodeKeyboard / resetKeyboard！
+            # 它会把系统默认输入法切成 io.appium.settings/.UnicodeIME，
+            # 一旦会话异常中断（Ctrl+C、进程被杀），输入法就留在那个空壳上，
+            # 手机上所有地方都打不出字。本脚本全程只点击、不输入文字，不需要它。
             "noReset": True,  # 不重置 app
             "newCommandTimeout": 6000,  # 超时时间
             "automationName": "UiAutomator2",  # 使用 uiautomator2
-            "skipServerInstallation": False,  # 跳过服务器安装
+            # 小米 HyperOS 会拦截 adb install -g，辅助 APK 改为提前手动安装（见
+            # appium-env/preinstall-appium-apks.sh），这里让驱动只使用、不重装
+            "skipServerInstallation": True,  # 跳过 uiautomator2 server 安装
+            "skipSettingsAppReinstall": True,  # 跳过 io.appium.settings 重装
             "ignoreHiddenApiPolicyError": True,  # 忽略隐藏 API 策略错误
             "disableWindowAnimation": True,  # 禁用窗口动画
             # 优化性能配置
